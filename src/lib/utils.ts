@@ -4,7 +4,8 @@ import { type ClassValue, clsx } from "clsx";
 import qs from "qs";
 import { twMerge } from "tailwind-merge";
 
-import { aspectRatioOptions } from "../../constants/index.ts";
+import { aspectRatioOptions } from "C:/Users/samj1/OneDrive/Desktop/New folder/html/Full stack AI Saas/my-app/constants/index";
+
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
