@@ -4,10 +4,10 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
-
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
-import { PostponedPathnameNormalizer } from "next/dist/server/future/normalizers/request/postponed";
-async function Handler(req: Request) {
+
+
+export default async function Handler(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
 
   console.log("API is being called--------------------------------------->");
@@ -19,12 +19,24 @@ async function Handler(req: Request) {
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
     );
   }
+  if(WEBHOOK_SECRET){
+    throw new Error(
+        "i am reaching here "
+    );
+  }
 
   // Get the headers
   const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
+
+  console.log(svix_id)
+  console.log(svix_timestamp);
+  console.log(svix_signature);
+  
+  
+
 
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
@@ -59,7 +71,8 @@ async function Handler(req: Request) {
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
-
+  console.log(eventType);
+  
   // CREATE
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
