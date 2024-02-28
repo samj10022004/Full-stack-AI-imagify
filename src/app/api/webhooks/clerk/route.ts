@@ -7,7 +7,7 @@ import { Webhook } from "svix";
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 
 
-export default async function Handler(req: Request) {
+export default async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
 
   console.log("API is being called--------------------------------------->");
@@ -132,7 +132,3 @@ export default async function Handler(req: Request) {
 
   return new Response("", { status: 200 });
 }
-
-export const POST=Handler;
-export const GET=Handler;
-export const PUT=Handler;
