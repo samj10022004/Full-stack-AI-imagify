@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '@/components/shared/Header'
+import Header from '@/components/shared/header'
 import { transformationTypes } from '../../../../../../constants'
 import { title } from 'process';
 import TransformationForm from '@/components/shared/TransformationForm';
