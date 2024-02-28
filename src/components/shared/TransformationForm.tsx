@@ -26,7 +26,7 @@ const formSchema = z.object({
 });
 
 const TransformationForm = ({action, data = null}:TransformationFormProps) => {
-    const initialValues=data && action ==="update"?{
+    const initialValues=data ?{
         title: data?.title,
         aspectRatio: data?.aspectRatio,
         color: data?.color,
@@ -49,7 +49,7 @@ const TransformationForm = ({action, data = null}:TransformationFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
