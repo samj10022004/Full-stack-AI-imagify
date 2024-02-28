@@ -4,24 +4,16 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
+
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 
-
-export default async function POST(req: Request) {
+export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-
-  console.log("API is being called--------------------------------------->");
-  
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
-    );
-  }
-  if(WEBHOOK_SECRET){
-    throw new Error(
-        "i am reaching here "
     );
   }
 
@@ -30,13 +22,6 @@ export default async function POST(req: Request) {
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
-
-  console.log(svix_id)
-  console.log(svix_timestamp);
-  console.log(svix_signature);
-  
-  
-
 
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
@@ -71,13 +56,11 @@ export default async function POST(req: Request) {
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
-  console.log(eventType);
-  
+
   // CREATE
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
-    console.log("new user being created ");
-    
+
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -88,8 +71,7 @@ export default async function POST(req: Request) {
     };
 
     const newUser = await createUser(user);
-    console.log("new user created");
-    
+
     // Set public metadata
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
