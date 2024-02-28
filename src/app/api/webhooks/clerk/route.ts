@@ -6,8 +6,8 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
-
-export async function POST(req: Request) {
+import { PostponedPathnameNormalizer } from "next/dist/server/future/normalizers/request/postponed";
+async function Handler(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
 
   console.log("API is being called--------------------------------------->");
@@ -119,3 +119,7 @@ export async function POST(req: Request) {
 
   return new Response("", { status: 200 });
 }
+
+export const POST=Handler;
+export const GET=Handler;
+export const PUT=Handler;
