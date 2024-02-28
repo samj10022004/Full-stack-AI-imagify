@@ -8,7 +8,7 @@ const UserSchema=new Schema({
     photo:{type:String,required:true},
     firstName:{type:String},
     lastName:{type:String},
-    planId: { type : Number , required : true }, 
+    planId: { type : Number }, 
     creditBalance: { type : Number ,default:10}
 });
 
