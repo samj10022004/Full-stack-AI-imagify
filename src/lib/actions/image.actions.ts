@@ -2,13 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "../database/mongoose";
-import { json } from "stream/consumers";
 import { handleError } from "../utils";
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
-import { query } from "express";
 import {v2 as cloudinary} from 'cloudinary'
+
+
 const populateUser=(query:any)=>query.populate({
     path:'author',
     model:User,
@@ -94,15 +94,15 @@ export async function getAllImage({limit=9,page=1,searchQuery=''}:{
             secure:true,
           })
 
-          let expression='folder=imagify'
+          let expression='folder=imagify';
 
           if (searchQuery) {
             expression+=`AND ${searchQuery}`
           }
 
-          const{resource}=await cloudinary.search.expression(expression).execute();
+          const{resources}=await cloudinary.search.expression(expression).execute();
 
-          const resourceIds=resource.map((resource:any)=>resource.public_id);
+          const resourceIds=resources.map((resource:any)=>resource.public_id);
 
           let query={};
           if (searchQuery) {
