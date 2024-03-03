@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import { Key } from "react";
 import { string } from "zod";
 
 
@@ -15,7 +16,7 @@ export interface IImage extends Document {
     color?: string;
     prompt?: string;
     author: {
-        _id:String;
+        _id:Key;
         firstName:String;
         lastName:String;
     }
