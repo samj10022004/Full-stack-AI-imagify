@@ -17,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from "../../../constants";
 import { CustomField } from "./CustomField";
-import { config, title } from "process";
 import {
   Select,
   SelectContent,
@@ -35,6 +34,7 @@ import { useRouter } from "next/navigation";
 import { addImage, updateImage } from "@/lib/actions/image.actions";
 import { InsufficientCreditsModal } from "./InsufficientCreditsModal";
 import { useEffect } from "react";
+import config from "next/config";
 
 export const formSchema = z.object({
   title: z.string(),
