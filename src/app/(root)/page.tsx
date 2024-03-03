@@ -1,4 +1,3 @@
-import { UserButton } from '@clerk/nextjs'
 import React from 'react'
 import { navLinks } from '../../../constants'
 import  Link from 'next/link'
@@ -6,10 +5,12 @@ import Image from 'next/image'
 import { Collection } from '@/components/shared/Collection'
 import { getAllImage } from '@/lib/actions/image.actions'
 
-const Home = ({searchParams}:SearchParamProps) => {
+const Home =async ({searchParams}:SearchParamProps) => {
   const page=Number(searchParams?.page)||1;
   const searchQuery=(searchParams?.query as string)|| '';
-  const images= getAllImage({page,searchQuery })
+
+  const images= await getAllImage({page,searchQuery })
+
   return (
     <>
     <section className="home">
