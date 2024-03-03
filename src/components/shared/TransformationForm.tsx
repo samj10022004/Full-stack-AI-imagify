@@ -142,7 +142,11 @@ const TransformationForm = ({action, data = null,userId,type,creditBalance}:Tran
     setNewTransformation(transformationType.config);
 
 
+    if (typeof onChangeField === 'function') {
       return onChangeField(value);
+    } else {
+      console.error('onChangeField is not a valid function.');
+    }
 
   }
 
@@ -161,7 +165,11 @@ const TransformationForm = ({action, data = null,userId,type,creditBalance}:Tran
 
     },1000)();
 
-        return onChangeField(value);
+    if (typeof onChangeField === 'function') {
+      return onChangeField(value);
+    } else {
+      console.error('onChangeField is not a valid function.');
+    }
 
   
 
