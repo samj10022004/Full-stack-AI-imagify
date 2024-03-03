@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '@/components/shared/header'
+import Header from '@/components/shared/Header'
 import { transformationTypes } from '../../../../../../constants'
 import { title } from 'process';
 import TransformationForm from '@/components/shared/TransformationForm';
@@ -16,7 +16,10 @@ const AddTransformationTypePage =async ({params :{type}}:SearchParamProps) => {
   return (
   <>
     <Header title={transformation.title} subtitle={transformation.subTitle} />
-    <TransformationForm action="Add" userId={user._id} type={transformation.type as TransformationTypeKey} creditBalance={user.creditBalance}/>
+    <section className='mt-10'>
+      <TransformationForm action="Add" userId={user._id} type={transformation.type as TransformationTypeKey} creditBalance={user.creditBalance}/>
+    </section>
+    
   </>  
   )
 }
