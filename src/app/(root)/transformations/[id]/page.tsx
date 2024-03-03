@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
-import Header from "@/components/shared/Header";
+import Header from "@/components/shared/header";
 import TransformedImage from "@/components/shared/TransformedImage";
 import { Button } from "@/components/ui/button";
 import { getImage } from "@/lib/actions/image.actions";
